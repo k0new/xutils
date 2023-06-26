@@ -44,6 +44,13 @@ func (s Slice[T]) AsSlice() []T {
 	return s.s
 }
 
+func (s Slice[T]) Len() int {
+	s.mu.RLock()
+	defer s.mu.RUnlock()
+
+	return len(s.s)
+}
+
 func (s Slice[T]) Max() T {
 	s.mu.RLock()
 	defer s.mu.RUnlock()

@@ -22,6 +22,10 @@ func NewFromMap[K, V comparable](m map[K]V) Map[K, V] {
 	return Map[K, V]{mu: sync.RWMutex{}, m: m}
 }
 
+func (m Map[K, V]) Len() int {
+	return len(m.m)
+}
+
 // Set sets or updates record.
 func (m Map[K, V]) Set(k K, v V) {
 	m.mu.Lock()
