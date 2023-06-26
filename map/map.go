@@ -23,6 +23,9 @@ func NewFromMap[K, V comparable](m map[K]V) Map[K, V] {
 }
 
 func (m Map[K, V]) Len() int {
+	m.mu.RLock()
+	defer m.mu.RUnlock()
+
 	return len(m.m)
 }
 
